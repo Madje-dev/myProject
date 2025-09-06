@@ -1,64 +1,35 @@
 // This will be used to draw a windows with openGL
 
-#include <stdio.h>
 
+#include </home/dhurianvitoldas/myProjects/src/include/glad/glad.h>
 #include <GLFW/glfw3.h>
 
-int main ()
-{
-    GLFWwindow* window;
-    GLFWwindow* secondWindow;
-    /* Initialize the library */
-    if (!glfwInit()){
 
-        fprintf(stderr, "Failed to initialize GLFW\n");
+
+#include <stdio.h>
+
+int main() {
+    if (!glfwInit()) return -1;
+
+    GLFWwindow* window = glfwCreateWindow(640, 480, "GLAD Test", NULL, NULL);
+    if (!window) return -1;
+
+    glfwMakeContextCurrent(window);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        printf("Failed to initialize GLAD\n");
         return -1;
     }
-            /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    secondWindow = glfwCreateWindow(640, 480, "Hello World second window", NULL, window);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-        
-    }
 
-    if (!secondWindow)
-          
-    {
-        glfwTerminate();
-        return -1;
-    }
-    /* Make the window's context current */
+    printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
 
-
-    
-    
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
-        glfwMakeContextCurrent(window);
-    
-            /* Render here */
+    while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
-
-        /* Swap front and back buffers */
         glfwSwapBuffers(window);
-
-        
-    
-        glfwMakeContextCurrent(secondWindow);
-        glClearColor(0.0f, 0.5f, 0.5f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(secondWindow);
         glfwPollEvents();
-    
-    
     }
 
+    glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
-
-
 }
