@@ -21,6 +21,7 @@ int main ()
     {
         glfwTerminate();
         return -1;
+        
     }
 
     if (!secondWindow)
