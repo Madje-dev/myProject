@@ -1,4 +1,4 @@
-- [] Get Keyboard input
-- [] Get mouse input
-- [] Draw Triangle
-- [] change background color
+- [ ] Get Keyboard input
+- [ ] Get mouse input
+- [ ] Draw Triangle
+- [ ] change background color
