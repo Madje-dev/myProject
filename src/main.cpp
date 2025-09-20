@@ -7,17 +7,20 @@
 #include <iostream>
 
 
-
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+} 
 int main() {
     bool init =false;
     std::cout << "GLFW init status: " << init << std::endl;
     init = glfwInit();
     std::cout << "GLFW initialized successfully" << std::endl;
-    std::cout << "GLFW init status: " << init << std::endl;
+    std::cout << "GLFW init status: " << init << std::endl ;
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
     glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE); // for macOS
     GLFWwindow* window = glfwCreateWindow(800,600, "LearnOpenGL", NULL, NULL);
@@ -32,7 +35,7 @@ int main() {
     }
 
     glViewport(0,0,800,600);
-    //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     while(!glfwWindowShouldClose(window)){
         glfwSwapBuffers(window);

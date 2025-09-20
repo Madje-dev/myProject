@@ -9,7 +9,7 @@
 				"-fdiagnostics-color=always",
 				"-g",
 				"${file}",
-				"-I/home/dhurianvitoldas/Programming/myProject/SRC/src/glad.c",				
+				"/home/dhurianvitoldas/Programming/myProject/src/src/glad.c",				
 				"-lglfw",
 				"-lGL",
 				"-lm",

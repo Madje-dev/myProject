@@ -1,4 +1,8 @@
 {
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",
-    "editor.acceptSuggestionOnCommitCharacter": false
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp"
+    }
 }
