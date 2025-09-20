@@ -9,3 +9,19 @@ We usually change the state by:
 When we want to draw lines instead of triangles we change the state of OpenGL by changing the context of some variables that set how OpenGL should draw. when we change the context by telling to draw lines then the next drawing commands will be to draw lines instead of triangles.
 
 # Objects
+
+An object represents a subset of of OpenGL states.
+
+'''
+// create object
+unsigned int objectId = 0;
+glGenObject(1, &objectId);
+// bind/assign object to context
+glBindObject(GL_WINDOW_TARGET, objectId);
+// set options of object currently bound to GL_WINDOW_TARGET
+glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_WIDTH,  800);
+glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, 600);
+// set context target back to default
+glBindObject(GL_WINDOW_TARGET, 0);
+
+'''
