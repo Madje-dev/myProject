@@ -12,7 +12,7 @@ When we want to draw lines instead of triangles we change the state of OpenGL by
 
 An object represents a subset of of OpenGL states.
 
-'''
+```   
 // create object
 unsigned int objectId = 0;
 glGenObject(1, &objectId);
@@ -24,4 +24,4 @@ glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, 600);
 // set context target back to default
 glBindObject(GL_WINDOW_TARGET, 0);
 
-'''
+```
