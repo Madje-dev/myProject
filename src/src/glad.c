@@ -878,7 +878,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include </home/dhurianvitoldas/myProjects/src/include/glad/glad.h>
+#include </home/dhurianvitoldas/Programming/myProject/src/include/glad/glad.h>
 
 static void* get_proc(const char *namez);
 

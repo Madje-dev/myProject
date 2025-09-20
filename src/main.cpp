@@ -1,7 +1,7 @@
 // This will be used to draw a windows with openGL
 
 
-#include </home/dhurianvitoldas/myProjects/src/include/glad/glad.h>
+#include </home/dhurianvitoldas/Programming/myProject/src/include/glad/glad.h>
 #include <GLFW/glfw3.h>
 
 
