@@ -5,24 +5,11 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <iostream>
+#include </home/dhurianvitoldas/Programming/myProject/src/include/auxOpenGL/AuxFunctions.h>   
 
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-} 
 
-void processInput(GLFWwindow *window){
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);    
 
-    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-       
-        std::cout<<"Starting to move up"<<std::endl;
-        std::cout<<"UP key is pressed"<<std::endl;  
-          std::cout<<"Stopped Pressing"<<std::endl;  
-    }
-}
 int main() {
     bool init =false;
     std::cout << "GLFW init status: " << init << std::endl;
