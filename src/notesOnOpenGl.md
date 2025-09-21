@@ -25,3 +25,21 @@ glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, 600);
 glBindObject(GL_WINDOW_TARGET, 0);
 
 ```
+# Notes
+One thing is the window and another is the viewport. 
+If the window size changes we need to recreate the viewport. 
+We allow to have a resizebale window with the following command 
+``` 
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+
+```
+And to have a resizeble viewport we need the following:
+```  
+glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+} 
+
+```  
