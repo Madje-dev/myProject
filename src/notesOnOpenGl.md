@@ -65,3 +65,42 @@ with glClear we can clear three different buffers:
 3. GL_STENCIL_BUFFER_BIT
 
 [glClear help](https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glClear.xml)
+
+# Hello Triangle
+
+The graphics pipeline transforms the 3d Coordinates into 2d pixels to show on the screen.
+## Graphics pipeline
+The Graphics Pipeline it is composed by two parts, the first part that transforms the 3d coordinate into 2d coordinates and the second part that colors the 2d coordinate.
+
+## Shaders
+The Shaders are small programs that run in the on the GPU.
+these small programs are very specialized and transform each of the 3d coordinates into a 2d pixel.
+
+We can also right our own shaders and are written on OpenGL Shading Language. (GLSL)
+The small programs are called:
+1. Vertex Shader
+2. Geometry Shader
+3. Shape Assembly
+4. Rasterization 
+5. Fragment Shader
+6. Tests and Blending
+
+In order to help OpenGL we should say what we are trying to render and those are called primitives. 
+That help is called a hint. Examples of primitives are:
+1. GL_POINTS
+2. GL_TRIANGLES
+3. GL_LINE_STRIP
+
+The first part of the pipeline is the vertex shader and takes as input a single vertex.
+
+A fragment in OpenGL is all the information needs to OpenGL render a single pixel.
+
+# Drawing a triangle
+First we create the three vertices, then those vertices are passed to the vertex shader. It creates a memory on the GPU and it stores the vertices.
+We manage the memory utilizing the Vertex Buffer Objects (VBO)
+
+
+
+
+
+

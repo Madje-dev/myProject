@@ -1,7 +1,7 @@
-- [ ] Get Keyboard input
+- [x] Get Keyboard input
 - [ ] Get mouse input
-- [ ] Draw Triangle
-- [ ] change background color
+- [x] Draw Triangle
+- [x] change background color
 # Learn how to do the following
 - [ ] how to import points
 - [ ] How to create a mesh
