@@ -11,6 +11,18 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 } 
+
+void processInput(GLFWwindow *window){
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);    
+
+    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
+       
+        std::cout<<"Starting to move up"<<std::endl;
+        std::cout<<"UP key is pressed"<<std::endl;  
+          std::cout<<"Stopped Pressing"<<std::endl;  
+    }
+}
 int main() {
     bool init =false;
     std::cout << "GLFW init status: " << init << std::endl;
@@ -36,10 +48,16 @@ int main() {
 
     glViewport(0,0,800,600);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
+   // render loop
     while(!glfwWindowShouldClose(window)){
+       glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // we first need to set the state with the color we want
+        glClear(GL_COLOR_BUFFER_BIT);    // After we use the state set to get the clearing color.
+       
+        processInput(window); 
         glfwSwapBuffers(window);
-        glfwPollEvents();   
+        glfwPollEvents();  
+        
+
     }
 
   glfwTerminate();

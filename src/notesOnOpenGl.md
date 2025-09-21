@@ -43,3 +43,24 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 } 
 
 ```  
+An iteration of the while loop that is gows through the 
+``` 
+while(!glfwWindowShouldClose(window)){
+        processInput(window); 
+        glfwSwapBuffers(window);
+        glfwPollEvents();  
+        
+
+    }
+
+``` 
+is a frame.
+
+# Rendering
+Everything we want to render needs to be part of the while loop mentioned aboved.
+
+with glClear we can clear three different buffers:
+1. GL_COLOR_BUFFER_BIT
+2. GL_DEPTH_BUFFER_BIT
+3. GL_STENCIL_BUFFER_BIT
+
