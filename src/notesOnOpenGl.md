@@ -64,3 +64,4 @@ with glClear we can clear three different buffers:
 2. GL_DEPTH_BUFFER_BIT
 3. GL_STENCIL_BUFFER_BIT
 
+[glClear help](https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glClear.xml)
