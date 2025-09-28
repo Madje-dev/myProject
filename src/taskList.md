@@ -2,6 +2,10 @@
 - [ ] Get mouse input
 - [x] Draw Triangle
 - [x] change background color
+- [x] Created two rectangles
+- [x] understood better, VBO, VAO and EBO
+- [x] created two shaders as well
+
 # Learn how to do the following
 - [ ] how to import points
 - [ ] How to create a mesh
