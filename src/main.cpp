@@ -7,26 +7,11 @@
 #include <iostream>
 #include <cmath>
 #include </home/dhurianvitoldas/Programming/myProject/src/include/auxOpenGL/AuxFunctions.h>   
+#include </home/dhurianvitoldas/Programming/myProject/src/include/Shader/shader.h>
 
 
 
-const char *vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "layout (location = 1) in vec3 aColor;\n"
-    "out vec3 ourColor;\n"
-    "void main()\n"
-    "{\n"
-    "gl_Position = vec4(aPos, 1.0);\n"
-    "ourColor= aColor;\n"
-    "}\0";
 
-const char *fragmentShaderSource = "#version 330 core\n"
-    "in vec3 ourColor;\n"    
-    "out vec4 FragColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(ourColor,1.0);\n"
-    "}\n\0";
 
 int main() {
     bool init =false;
@@ -78,39 +63,9 @@ int main() {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
    
    
-    vertexShader =  glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if(!success){
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout<<"ERROR::SHADER::VERTEX::COMPILATION_FAILED\n"<<infoLog<<std::endl;
-    }
-
-    fragmentShader= glCreateShader(GL_FRAGMENT_SHADER);  
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);       
-
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if(!success){
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cout<<"ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"<<infoLog<<std::endl;
-    }   
-
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if(!success){
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout<<"ERROR::SHADER::PROGRAM::LINKING_FAILED\n"<<infoLog<<std::endl;
-    }
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader); 
-
     
+    Shader ourShader("/home/dhurianvitoldas/Programming/myProject/src/include/Shader/vertexShader.vs",
+         "/home/dhurianvitoldas/Programming/myProject/src/include/Shader/fragmentShader.fs");
 
 
     glGenBuffers(1, &VBO);
@@ -118,7 +73,7 @@ int main() {
     glGenVertexArrays(1, &VAO);
 
  
-    glBindVertexArray(VAO);
+    glBindVertexArray(VAO); 
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -144,19 +99,18 @@ int main() {
    
    
    
-       glUseProgram(shaderProgram);
-   
+        
     // render loop
     while(!glfwWindowShouldClose(window)){
        processInput(window); 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // we first need to set the state with the color we want
         glClear(GL_COLOR_BUFFER_BIT);    // After we use the state set to get the clearing color.
 
-
+    ourShader.use();    
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES,0, 3);   
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+        
         glfwSwapBuffers(window);
         glfwPollEvents();  
         
