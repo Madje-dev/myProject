@@ -33,6 +33,7 @@ int main() {
     float greenValue;
     int vertexColorLocation;
     int success;
+    float moveTriangle;
     char infoLog[512];
 
 
@@ -99,18 +100,18 @@ int main() {
    
    
    
-        
+    moveTriangle=0.0;   
     // render loop
     while(!glfwWindowShouldClose(window)){
-       processInput(window); 
+       processInput(window, moveTriangle); 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // we first need to set the state with the color we want
         glClear(GL_COLOR_BUFFER_BIT);    // After we use the state set to get the clearing color.
         ourShader.use(); 
-   int vertexLocation = glGetUniformLocation(ourShader.ID, "horizontalOffset");
-           glUniform1f(vertexLocation,-0.25);
-    glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES,0, 3);   
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        int vertexLocation = glGetUniformLocation(ourShader.ID, "horizontalOffset");
+        glUniform1f(vertexLocation, moveTriangle);
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES,0, 3);   
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         
         glfwSwapBuffers(window);
         glfwPollEvents();  
