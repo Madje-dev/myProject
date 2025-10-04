@@ -5,30 +5,35 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <iostream>
+#include <cmath>
 #include </home/dhurianvitoldas/Programming/myProject/src/include/auxOpenGL/AuxFunctions.h>   
 
 
 
 const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
+    "layout (location = 1) in vec3 aColor;\n"
+    "out vec3 ourColor;\n"
     "void main()\n"
     "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "gl_Position = vec4(aPos, 1.0);\n"
+    "ourColor= aColor;\n"
     "}\0";
 
 const char *fragmentShaderSource = "#version 330 core\n"
+    "in vec3 ourColor;\n"    
     "out vec4 FragColor;\n"
     "void main()\n"
     "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "   FragColor = vec4(ourColor,1.0);\n"
     "}\n\0";
 
 int main() {
     bool init =false;
     float vertices[] = {
-        -0.5, -0.5, 0.0, // left  
-         0.5, -0.5, 0.0, // right 
-         0.0,  0.5, 0.0  // top   
+        -0.5, -0.5, 0.0,  1.0f, 0.0f, 0.0f,// left  
+         0.5, -0.5, 0.0,  0.0f, 1.0f, 0.0f,// right 
+         0.0,  0.5, 0.0,  0.0f, 0.0f, 1.0f// top   
     };
     unsigned int indices[] = {  // note that we start from 0!
         0, 1, 2  // first Triangle
@@ -39,13 +44,15 @@ int main() {
     unsigned int vertexShader;
     unsigned int fragmentShader;
     unsigned int shaderProgram;
-    
-
+    float timeValue;
+    float greenValue;
+    int vertexColorLocation;
     int success;
     char infoLog[512];
 
 
 
+    
     std::cout << "GLFW init status: " << init << std::endl;
     init = glfwInit();
     std::cout << "GLFW initialized successfully" << std::endl;
@@ -103,6 +110,9 @@ int main() {
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader); 
 
+    
+
+
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
@@ -113,13 +123,19 @@ int main() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    //position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0); 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+    //color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1); 
+    
+
+    //glBindBuffer(GL_ARRAY_BUFFER, 0);
+    //glBindVertexArray(0);
 
 
 
@@ -128,20 +144,18 @@ int main() {
    
    
    
-   
+       glUseProgram(shaderProgram);
    
     // render loop
     while(!glfwWindowShouldClose(window)){
        processInput(window); 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // we first need to set the state with the color we want
         glClear(GL_COLOR_BUFFER_BIT);    // After we use the state set to get the clearing color.
-       
-        
 
-    glUseProgram(shaderProgram);
+
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);   
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDrawArrays(GL_TRIANGLES,0, 3);   
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         glfwSwapBuffers(window);
         glfwPollEvents();  
