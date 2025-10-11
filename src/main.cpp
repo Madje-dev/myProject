@@ -1,14 +1,14 @@
 // This will be used to draw a windows with openGL
 
 
-#include </home/dhurianvitoldas/Programming/myProject/src/include/glad/glad.h>
+#include </home/dhurian/myProgramming/myProject/src/include/glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <iostream>
 #include <cmath>
-#include </home/dhurianvitoldas/Programming/myProject/src/include/auxOpenGL/AuxFunctions.h>   
-#include </home/dhurianvitoldas/Programming/myProject/src/include/Shader/shader.h>
-#include </home/dhurianvitoldas/Programming/myProject/src/src/stb_image.h>
+#include </home/dhurian/myProgramming/myProject/src/include/Shader/shader.h>
+#include </home/dhurian/myProgramming/myProject/src/src/stb_image.h>
+#include </home/dhurian/myProgramming/myProject/src/include/auxOpenGL/AuxFunctions.h>
 
 
 
