@@ -1,7 +1,7 @@
 
-#include </home/dhurianvitoldas/Programming/myProject/src/include/glad/glad.h>
+#include </home/dhurian/myProgramming/myProject/src/include/glad/glad.h>
 #include <GLFW/glfw3.h>
-#include </home/dhurianvitoldas/Programming/myProject/src/include/auxOpenGL/AuxFunctions.h> 
+#include </home/dhurian/myProgramming/myProject/src/include/auxOpenGL/AuxFunctions.h> 
 #include <stdio.h>
 #include <iostream>
 
