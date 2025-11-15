@@ -9,6 +9,10 @@
 #include </home/dhurian/myProgramming/myProject/src/include/Shader/shader.h>
 #include </home/dhurian/myProgramming/myProject/src/src/stb_image.h>
 #include </home/dhurian/myProgramming/myProject/src/include/auxOpenGL/AuxFunctions.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 
 
@@ -39,11 +43,25 @@ float vertices[] = {
     int width, height, nrChannels;
     unsigned char *data;
     unsigned int texture;
+    unsigned int transformLoc;
     
        unsigned int indices[] = {  
         0, 1, 3, // first triangle
          1, 2, 3 // second triangle
     };
+
+
+    glm::vec4 vec(1,0,0,1);
+    glm::mat4 trans = glm::mat4(1.0);
+    trans = glm::translate(trans, glm::vec3(1,1,0));
+    vec = trans*vec;
+    std::cout<<vec.x<< vec.y<< vec.z<< std::endl;
+    
+ 
+    
+
+ 
+
     
 
     
@@ -80,11 +98,12 @@ float vertices[] = {
                    
 
 
+
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
 
-    
+
     
  
     glBindVertexArray(VAO); 
@@ -139,6 +158,13 @@ float vertices[] = {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // we first need to set the state with the color we want
         glClear(GL_COLOR_BUFFER_BIT);    // After we use the state set to get the clearing color.
         ourShader.use(); 
+        glm::mat4 trans1 = glm::mat4(1.0f);
+        trans1 = glm::rotate(trans1, (float)glfwGetTime(), glm::vec3(0,0,1));
+        trans1 = glm::scale(trans1, glm::vec3(0.5,0.5,0.5));
+        transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        //std::cout<< "TransformLoc "<< transformLoc<< std::endl; 
+        glUniformMatrix4fv(transformLoc,1,GL_FALSE, glm::value_ptr(trans1));
+        
         glBindTexture(GL_TEXTURE_2D, texture);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);   
