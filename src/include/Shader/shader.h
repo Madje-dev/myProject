@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include </home/dhurian/myProgramming/myProject/src/include/glad/glad.h>
+#include </home/dhurian/myProjects/myProject/src/include/glad/glad.h>
 
 #include <string>
 #include <fstream>
